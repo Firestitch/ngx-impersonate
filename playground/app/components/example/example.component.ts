@@ -7,8 +7,9 @@ import { FsMetaService } from '../../../../src/services';
 })
 export class ExampleComponent {
   public tabs = [
-    { path: '/body/page1', label: 'Page Without Class' },
-    { path: '/body/page2', label: 'Page With Class' }
+    { path: '/meta/page1', label: 'Page 1' },
+    { path: '/meta/page2', label: 'Page 2' },
+    { path: '/meta/page3', label: 'Page 3' },
   ];
 
   constructor() {}

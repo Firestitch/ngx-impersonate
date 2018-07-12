@@ -13,14 +13,22 @@ import {  ExampleComponent,
           ExamplesComponent } from './app/components';
 import { Page1Component } from './app/components/example/page1';
 import { Page2Component } from './app/components/example/page2';
+import { Page3Component } from './app/components/example/page3';
 
 
 const routes: Routes = [
-  { path: '', component: ExamplesComponent, children: [
-      { path: 'body/page1', component: Page1Component },
-      { path: 'body/page2', component: Page2Component },
-    ] },
+  {
+    path: '',
+    component: ExamplesComponent,
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: '/meta/page1'},
+      { path: 'meta/page1', component: Page1Component },
+      { path: 'meta/page2', component: Page2Component },
+      { path: 'meta/page3', component: Page3Component },
+    ]
+  },
 ];
+
 
 @NgModule({
   bootstrap: [ AppComponent ],
@@ -46,6 +54,7 @@ const routes: Routes = [
     ExampleComponent,
     Page1Component,
     Page2Component,
+    Page3Component,
   ],
   providers: [
   ],
