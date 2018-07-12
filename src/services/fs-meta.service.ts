@@ -8,7 +8,7 @@ import { FS_META_DEFAULT_CONFIG } from '../fs-meta.providers';
 
 
 @Injectable()
-export class FsMetaService {
+export class FsMeta {
 
   private _activeProperties: string[] = [];
   private _tagsByUrl = new Map();

@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { FsMetaService } from '../../../../../src/services';
+import { FsMeta } from '../../../../../src/services';
 
 
 @Component({
@@ -7,6 +6,6 @@ import { FsMetaService } from '../../../../../src/services';
   templateUrl: './page3.component.html'
 })
 export class Page3Component {
-  constructor(private _meta: FsMetaService) {
+  constructor(private _meta: FsMeta) {
   }
 }

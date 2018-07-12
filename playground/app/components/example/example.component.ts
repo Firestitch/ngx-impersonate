@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FsMetaService } from '../../../../src/services';
+import { FsMeta } from '../../../../src/services';
 
 @Component({
   selector: 'example',
