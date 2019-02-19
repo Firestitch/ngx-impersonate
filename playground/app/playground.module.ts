@@ -1,19 +1,20 @@
-import './styles.scss';
-
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app/app.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { FsMetaModule } from '../src';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppMaterialModule } from './app/material.module';
+
 import { FsExampleModule } from '@firestitch/example';
-import {  ExampleComponent,
-          ExamplesComponent } from './app/components';
-import { Page1Component } from './app/components/example/page1';
-import { Page2Component } from './app/components/example/page2';
-import { Page3Component } from './app/components/example/page3';
+import { FsMetaModule } from '@firestitch/meta';
+import { FsMessageModule } from '@firestitch/message';
+import { ToastrModule } from 'ngx-toastr';
+
+import { AppMaterialModule } from './material.module';
+import { AppComponent } from './app.component';
+import { ExampleComponent, ExamplesComponent } from './components';
+import { Page1Component } from './components/example/page1';
+import { Page2Component } from './components/example/page2';
+import { Page3Component } from './components/example/page3';
 
 
 const routes: Routes = [
@@ -21,7 +22,7 @@ const routes: Routes = [
     path: '',
     component: ExamplesComponent,
     children: [
-      { path: '', pathMatch: 'full', redirectTo: '/meta/page1'},
+      { path: '', pathMatch: 'full', redirectTo: '/meta/page1' },
       { path: 'meta/page1', component: Page1Component },
       { path: 'meta/page2', component: Page2Component },
       { path: 'meta/page3', component: Page3Component },
@@ -31,7 +32,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  bootstrap: [ AppComponent ],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     FsMetaModule.forRoot({
@@ -43,11 +44,12 @@ const routes: Routes = [
     BrowserAnimationsModule,
     AppMaterialModule,
     FormsModule,
-    FsExampleModule,
+    FsExampleModule.forRoot(),
+    ToastrModule.forRoot({ preventDuplicates: true }),
+    FsMessageModule.forRoot(),
     RouterModule.forRoot(routes),
   ],
-  entryComponents: [
-  ],
+  entryComponents: [],
   declarations: [
     AppComponent,
     ExamplesComponent,
@@ -56,8 +58,7 @@ const routes: Routes = [
     Page2Component,
     Page3Component,
   ],
-  providers: [
-  ],
+  providers: [],
 })
 export class PlaygroundModule {
 }

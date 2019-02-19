@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FS_META_DEFAULT_CONFIG } from './fs-meta.providers';
-import { FsMeta } from './services';
+import { FsMeta } from './services/fs-meta.service';
 import { FsMetaTag } from './interfaces/meta-tag.interface';
 // import { FsComponentService } from './services';
 

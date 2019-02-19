@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FsMeta } from '../../../../../src/services';
+import { FsMeta } from '@firestitch/meta';
 
 
 @Component({

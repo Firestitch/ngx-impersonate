@@ -1,18 +1,20 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, OnDestroy } from '@angular/core';
 import { ActivationEnd, ActivationStart, Router } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
 
-import { filter } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 
 import { FS_META_DEFAULT_CONFIG } from '../fs-meta.providers';
 
 
 @Injectable()
-export class FsMeta {
+export class FsMeta implements OnDestroy {
 
   private _activeProperties: string[] = [];
   private _tagsByUrl = new Map();
   private _defaults = new Map();
+  private _destroy$ = new Subject<void>();
 
   constructor(private _meta: Meta,
               private _router: Router,
@@ -21,10 +23,15 @@ export class FsMeta {
     this._subscribeToRouteChange();
   }
 
+  public ngOnDestroy() {
+    this._destroy$.next();
+    this._destroy$.complete();
+  }
+
   /**
    * Set new meta tag for current url
-   * @param {string} property
-   * @param {string} content
+   * @param property
+   * @param content
    */
   public set(property: string, content: string) {
    if (this._router.url && !this._tagsByUrl.has(this._router.url)) {
@@ -37,7 +44,7 @@ export class FsMeta {
 
   /**
    * Remove meta tag for current url
-   * @param {string} property
+   * @param property
    */
   public remove(property: string) {
     if (this._router.url && this._tagsByUrl.has(this._router.url)) {
@@ -56,7 +63,6 @@ export class FsMeta {
   /**
    * Process default tags
    * @param defaults
-   * @private
    */
   private _setupDefaults(defaults) {
     if (defaults && Array.isArray(defaults)) {
@@ -70,7 +76,6 @@ export class FsMeta {
    * Attach meta tag to HTML and save name of its tag to array with active props.
    * @param property
    * @param content
-   * @private
    */
   private _addMetaTag(property, content) {
     this._activeProperties.push(property);  // Push to active props store. They are applied for page now
@@ -79,7 +84,6 @@ export class FsMeta {
 
   /**
    * Attach meta tags for active URL
-   * @private
    */
   private _setTagsForUrl() {
 
@@ -102,7 +106,6 @@ export class FsMeta {
 
   /**
    * Remove all meta tags which has been setted up
-   * @private
    */
   private _removeActiveTags() {
     this._activeProperties.forEach((property) => {
@@ -116,13 +119,13 @@ export class FsMeta {
 
   /**
    * Subscribe to route changing and remove/add meta tags
-   * @private
    */
   private _subscribeToRouteChange() {
     this._router
       .events
       .pipe(
-        filter(event => event instanceof ActivationStart || event instanceof ActivationEnd)
+        filter(event => event instanceof ActivationStart || event instanceof ActivationEnd),
+        takeUntil(this._destroy$),
       )
       .subscribe((event: any) => {
         if (event instanceof ActivationStart) {
