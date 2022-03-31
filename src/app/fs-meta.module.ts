@@ -20,7 +20,7 @@ import { FsMetaTag } from './interfaces/meta-tag.interface';
   ],
 })
 export class FsMetaModule {
-  static forRoot(config: { defaults?: FsMetaTag[] } = {}): ModuleWithProviders {
+  static forRoot(config: { defaults?: FsMetaTag[] } = {}): ModuleWithProviders<FsMetaModule> {
     return {
       ngModule: FsMetaModule,
       providers: [
