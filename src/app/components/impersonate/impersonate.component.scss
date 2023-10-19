@@ -1,0 +1,11 @@
+:host ::ng-deep {
+  .mat-radio-ripple {
+    display: none;
+  }
+}
+
+a {
+  text-align: center;
+  font-size: 108%;
+  display: block;
+}
