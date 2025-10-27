@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { FsImpersonate } from '@firestitch/meta';
 
@@ -14,10 +14,8 @@ import { MatAnchor } from '@angular/material/button';
     imports: [MatAnchor],
 })
 export class ExampleComponent {
+  private _impersonate = inject(FsImpersonate);
 
-  constructor(
-    private _impersonate: FsImpersonate,
-  ) { }
 
   public impersonate(): void {
     this._impersonate.impersonate({

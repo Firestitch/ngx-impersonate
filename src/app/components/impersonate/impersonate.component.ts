@@ -1,6 +1,4 @@
-import {
-  ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 
 import { MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 import { FsDialogModule } from '@firestitch/dialog';
@@ -30,15 +28,13 @@ import { MatButton } from '@angular/material/button';
     ],
 })
 export class ImpersonateComponent implements OnInit {
+  private _data = inject(MAT_DIALOG_DATA);
+  private _cdRef = inject(ChangeDetectorRef);
+
 
   public code;
   public signinLink;
   public email;
-
-  constructor(
-    @Inject(MAT_DIALOG_DATA) private _data: any,
-    private _cdRef: ChangeDetectorRef,
-  ) { }
 
   public ngOnInit(): void {
     const code$ = this._data.code;

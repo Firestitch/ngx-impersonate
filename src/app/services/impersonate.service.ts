@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
 
@@ -12,10 +12,8 @@ import { ImpersonateComponent } from '../components';
   providedIn: 'root',
 })
 export class FsImpersonate {
+  private _dialog = inject(MatDialog);
 
-  constructor(
-    private _dialog: MatDialog,
-  ) { }
 
   public impersonate(
     options: {
