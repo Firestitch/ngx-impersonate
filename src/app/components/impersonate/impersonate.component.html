@@ -1,12 +1,21 @@
 <fs-dialog>
-  <h1 mat-dialog-title>Impersonate</h1>
+  <h1 mat-dialog-title>
+    Impersonate
+  </h1>
   <mat-dialog-content>
     <ng-container *fsSkeleton="code">
-      <p>1. Copy the one time password below</p>
+      <p>
+        1. Copy the one time password below
+      </p>
       <fs-one-time-password-code [code]="code"></fs-one-time-password-code>
-      <p>2. Right click on the link and open it in a incognito window</p>
-      <a [routerLink]="['/signin']" [queryParams]="{ email: email }" target="_blank">
-        {{signinLink}}
+      <p>
+        2. Right click on the link and open it in a incognito window
+      </p>
+      <a
+          [routerLink]="['/signin']"
+          [queryParams]="{ email: email }"
+          target="_blank">
+        {{ signinLink }}
       </a>
     </ng-container>
   </mat-dialog-content>
