@@ -2,13 +2,32 @@ import {
   ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit,
 } from '@angular/core';
 
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
+import { FsDialogModule } from '@firestitch/dialog';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { FsSkeletonModule } from '@firestitch/skeleton';
+import { FsOneTimePasswordCodeModule } from '@firestitch/one-time-password';
+import { RouterLink } from '@angular/router';
+import { MatButton } from '@angular/material/button';
 
 
 @Component({
-  templateUrl: './impersonate.component.html',
-  styleUrls: ['./impersonate.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './impersonate.component.html',
+    styleUrls: ['./impersonate.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        FsDialogModule,
+        MatDialogTitle,
+        CdkScrollable,
+        MatDialogContent,
+        FsSkeletonModule,
+        FsOneTimePasswordCodeModule,
+        RouterLink,
+        MatDialogActions,
+        MatButton,
+        MatDialogClose,
+    ],
 })
 export class ImpersonateComponent implements OnInit {
 

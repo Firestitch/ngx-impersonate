@@ -12,20 +12,16 @@ import { FsSkeletonModule } from '@firestitch/skeleton';
 import { ImpersonateComponent } from './components';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-
-    MatDialogModule,
-    MatButtonModule,
-
-    FsOneTimePasswordCodeModule,
-    FsSkeletonModule,
-    FsDialogModule,
-  ],
-  declarations: [
-    ImpersonateComponent,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        MatDialogModule,
+        MatButtonModule,
+        FsOneTimePasswordCodeModule,
+        FsSkeletonModule,
+        FsDialogModule,
+        ImpersonateComponent,
+    ],
 })
 export class FsImpersonateModule {
   public static forRoot(config = {}): ModuleWithProviders<FsImpersonateModule> {
